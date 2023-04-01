@@ -6,11 +6,11 @@ def save_conversion_history(conversion):
         fieldnames = ["from_currency", "to_currency", "amount", "converted_amount", "rate", "date"]
         writer = csv.DictWriter(history_file, fieldnames=fieldnames)
 
-        # Write header if the file is empty
+
         if history_file.tell() == 0:
             writer.writeheader()
 
-        # Write the conversion data
+
         writer.writerow({
             "from_currency": conversion["from_currency"],
             "to_currency": conversion["to_currency"],

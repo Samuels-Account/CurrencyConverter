@@ -18,27 +18,22 @@ LANGUAGES = {
 
 
 def convert_currency(from_currency, to_currency, amount):
-    # Set up the API endpoint and parameters
     url = "https://openexchangerates.org/api/latest.json"
     params = {
-        "app_id": "868481e860004e148b401d99451c30e8",  # Replace with your app ID
+        "app_id": "868481e860004e148b401d99451c30e8",
         "symbols": f"{from_currency},{to_currency}",
     }
 
-    # Send a GET request to the API
     response = requests.get(url, params=params)
 
-    # Parse the JSON response into a Python dictionary
     data = json.loads(response.text)
 
-    # Extract the exchange rates from the dictionary
     rates = data["rates"]
 
-    # Convert the currency
     if from_currency == to_currency:
         converted_amount = amount
     else:
         converted_amount = amount / rates[from_currency] * rates[to_currency]
 
-    # Return the converted amount
+
     return converted_amount
